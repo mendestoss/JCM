@@ -17,9 +17,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
                         trigano: {
                             DEFAULT: '#E30613',
@@ -34,59 +32,21 @@
     </script>
 
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0F172A;
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1E293B;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #475569;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #E30613;
-        }
-
-        /* Print styles for PDF export */
+        body { font-family: 'Inter', sans-serif; background-color: #0F172A; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #1E293B; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #E30613; }
         @media print {
-            body {
-                background: white !important;
-                color: black !important;
-            }
-            .no-print {
-                display: none !important;
-            }
-            .print-only {
-                display: block !important;
-            }
-            .print-card {
-                background: white !important;
-                border: 1px solid #CBD5E1 !important;
-                color: black !important;
-                box-shadow: none !important;
-            }
-            .print-text {
-                color: black !important;
-            }
+            body { background: white !important; color: black !important; }
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            .print-card { background: white !important; border: 1px solid #CBD5E1 !important; color: black !important; box-shadow: none !important; }
         }
-
-        .print-only {
-            display: none;
-        }
-
-        /* Custom range slider thumb styling */
+        .print-only { display: none; }
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            height: 20px;
-            width: 20px;
+            height: 20px; width: 20px;
             border-radius: 50%;
             background: #E30613;
             cursor: pointer;
@@ -96,45 +56,39 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between antialiased selection:bg-red-600 selection:text-white">
 
-    <!-- Header principal Trigano MDC -->
+    <!-- Header principal -->
     <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-40 shadow-xl no-print">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo & Titre Usine -->
                 <div class="flex items-center space-x-4">
-                    <!-- Trigano Logo SVG Badge -->
                     <div class="bg-[#E30613] px-4 py-2 rounded-xl flex flex-col justify-center items-center shadow-lg shadow-red-900/30 border border-red-500/20">
                         <span class="text-[10px] text-white font-serif italic tracking-widest uppercase opacity-90 -mb-1">Camping since 1935</span>
                         <span class="text-2xl font-black text-white tracking-tighter uppercase leading-none font-sans">TRIGANO</span>
                     </div>
                     <div>
                         <div class="flex items-center space-x-2">
-                            <span class="bg-red-950/80 text-red-400 text-xs font-bold px-2.5 py-0.5 rounded-md border border-red-800/50 uppercase tracking-wider">Jean Christophe Menage</span>
-                            <span class="text-xs text-slate-400 hidden sm:inline"><i class="fa-solid fa-industry text-red-500 mr-1"></i> Ligne de Production Mobil-Homes</span>
+                            <span class="bg-red-950/80 text-red-400 text-xs font-bold px-2.5 py-0.5 rounded-md border border-red-800/50 uppercase tracking-wider">Trigano MDC</span>
+                            <span class="text-xs text-slate-400 hidden sm:inline"><i class="fa-solid fa-industry text-red-500 mr-1"></i> Ligne Mobil-Homes</span>
                         </div>
-                        <h1 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Plan Directeur de Production (PDP)</h1>
+                        <h1 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight">Plan Ligne de Production (PDP)</h1>
                     </div>
                 </div>
 
-                <!-- Badges d'information rapides -->
-                <div class="hidden md:flex items-center space-x-3 text-xs">
-                    <div class="bg-slate-800/80 border border-slate-700/60 rounded-lg px-3 py-2 text-right">
-                        <span class="text-slate-400 block text-[10px] uppercase">Régime Hebdo</span>
-                        <span class="font-bold text-slate-200"><i class="fa-regular fa-clock text-red-400 mr-1"></i>5j / 42.5h brut</span>
-                    </div>
-                    <div class="bg-slate-800/80 border border-slate-700/60 rounded-lg px-3 py-2 text-right">
-                        <span class="text-slate-400 block text-[10px] uppercase">Postes Daily</span>
-                        <span class="font-bold text-slate-200">07h30-12h00 | 13h00-17h00</span>
+                <!-- Indicateur de Sauvegarde Auto -->
+                <div class="flex items-center space-x-3 text-xs">
+                    <div id="save-status-badge" class="bg-emerald-950/80 border border-emerald-700/60 text-emerald-300 rounded-lg px-3 py-1.5 flex items-center space-x-2 transition-all">
+                        <i class="fa-solid fa-cloud-arrow-up text-emerald-400"></i>
+                        <span class="font-semibold">Sauvegardé automatiquement</span>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Sub-navigation & quick bar -->
+    <!-- Navigation & Barre d'actions rapide -->
     <div class="bg-slate-800/90 border-b border-slate-700/50 py-2.5 no-print">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-3 text-xs">
-            <!-- Navigation par onglets -->
             <div class="flex items-center space-x-2">
                 <button id="tab-btn-dashboard" onclick="switchTab('dashboard')" class="px-3.5 py-1.5 rounded-lg font-semibold transition-all bg-red-600 text-white shadow-md shadow-red-600/30">
                     <i class="fa-solid fa-chart-line mr-1.5"></i>Calculateur & KPIs
@@ -143,17 +97,20 @@
                     <i class="fa-solid fa-calendar-days mr-1.5"></i>Planning Horaires
                 </button>
                 <button id="tab-btn-settings" onclick="switchTab('settings')" class="px-3.5 py-1.5 rounded-lg font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700">
-                    <i class="fa-solid fa-sliders mr-1.5"></i>Horaires & Shifts
+                    <i class="fa-solid fa-floppy-disk mr-1.5"></i>Gestion des Sauvegardes
                 </button>
             </div>
 
-            <!-- Boutons d'exportation rapide -->
             <div class="flex items-center space-x-2">
+                <button onclick="resetToDefaults()" class="bg-slate-700 hover:bg-slate-600 text-slate-300 px-3 py-1.5 rounded-lg font-medium border border-slate-600 transition flex items-center space-x-1.5" title="Remettre les valeurs d'origine usine">
+                    <i class="fa-solid fa-rotate-left text-amber-400"></i>
+                    <span>Réinitialiser</span>
+                </button>
                 <button onclick="exportCSV()" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-3 py-1.5 rounded-lg font-medium border border-slate-600 transition flex items-center space-x-1.5">
                     <i class="fa-solid fa-file-csv text-green-400"></i>
                     <span>Export CSV</span>
                 </button>
-                <button onclick="triggerPrint()" class="bg-red-600 hover:bg-red-500 text-white px-3 py-1.5 rounded-lg font-medium shadow transition flex items-center space-x-1.5">
+                <button onclick="window.print()" class="bg-red-600 hover:bg-red-500 text-white px-3 py-1.5 rounded-lg font-medium shadow transition flex items-center space-x-1.5">
                     <i class="fa-solid fa-print"></i>
                     <span>Imprimer / PDF</span>
                 </button>
@@ -167,22 +124,20 @@
         <!-- TAB 1 : CALCULATEUR & DASHBOARD -->
         <div id="tab-dashboard" class="space-y-6">
             
-            <!-- Carte principale : Selecteur de Mode et Saisie des paramètres -->
+            <!-- Carte Configuration -->
             <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-5 sm:p-6 shadow-xl backdrop-blur-sm">
-                
-                <!-- Toggle Mode A / Mode B -->
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-700/70 pb-4 mb-6 gap-4">
                     <div>
                         <h2 class="text-lg font-bold text-white flex items-center">
-                            <i class="fa-solid fa-calculator text-red-500 mr-2"></i>
-                            Configuration du Mode de Calcul PDP
+                            <i class="fa-solid fa-sliders text-red-500 mr-2"></i>
+                            Mode de Calcul PDP
                         </h2>
-                        <p class="text-xs text-slate-400">Sélectionnez le sens de calcul souhaité pour la ligne Mobil-Homes</p>
+                        <p class="text-xs text-slate-400">Choisissez la méthode de calcul adaptée à votre besoin immédiat</p>
                     </div>
 
                     <div class="inline-flex p-1 bg-slate-900 rounded-xl border border-slate-700">
                         <button id="mode-btn-cycle" onclick="setMode('cycle')" class="px-4 py-2 rounded-lg text-xs font-bold transition-all bg-red-600 text-white shadow">
-                            <i class="fa-solid fa-stopwatch mr-1.5"></i>Mode A : Par Temps de Cycle
+                            <i class="fa-solid fa-stopwatch mr-1.5"></i>Mode A : Connaissant le Temps de Cycle
                         </button>
                         <button id="mode-btn-target" onclick="setMode('target')" class="px-4 py-2 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white">
                             <i class="fa-solid fa-bullseye mr-1.5"></i>Mode B : Par Objectif Hebdo
@@ -190,10 +145,9 @@
                     </div>
                 </div>
 
-                <!-- Formulaire selon Mode -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                     
-                    <!-- INPUTS MODE A (Temps de Cycle -> Quantité) -->
+                    <!-- MODE A (Temps de Cycle) -->
                     <div id="mode-inputs-cycle" class="lg:col-span-7 space-y-4">
                         <div class="flex justify-between items-center">
                             <label class="text-sm font-semibold text-slate-200">
@@ -204,23 +158,21 @@
                             </span>
                         </div>
 
-                        <!-- Saisie Heures / Minutes / Secondes -->
                         <div class="grid grid-cols-3 gap-3">
                             <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700 text-center">
                                 <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Heures</label>
-                                <input type="number" id="input-cycle-h" min="0" max="12" value="1" oninput="updateCalculations()" class="w-full bg-slate-800 text-white font-mono text-center font-bold text-xl rounded-lg py-1.5 border border-slate-600 focus:border-red-500 focus:outline-none">
+                                <input type="number" id="input-cycle-h" min="0" max="12" value="1" oninput="handleInputChange()" class="w-full bg-slate-800 text-white font-mono text-center font-bold text-xl rounded-lg py-1.5 border border-slate-600 focus:border-red-500 focus:outline-none">
                             </div>
                             <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700 text-center">
                                 <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Minutes</label>
-                                <input type="number" id="input-cycle-m" min="0" max="59" value="15" oninput="updateCalculations()" class="w-full bg-slate-800 text-white font-mono text-center font-bold text-xl rounded-lg py-1.5 border border-slate-600 focus:border-red-500 focus:outline-none">
+                                <input type="number" id="input-cycle-m" min="0" max="59" value="15" oninput="handleInputChange()" class="w-full bg-slate-800 text-white font-mono text-center font-bold text-xl rounded-lg py-1.5 border border-slate-600 focus:border-red-500 focus:outline-none">
                             </div>
                             <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-700 text-center">
                                 <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Secondes</label>
-                                <input type="number" id="input-cycle-s" min="0" max="59" value="0" oninput="updateCalculations()" class="w-full bg-slate-800 text-white font-mono text-center font-bold text-xl rounded-lg py-1.5 border border-slate-600 focus:border-red-500 focus:outline-none">
+                                <input type="number" id="input-cycle-s" min="0" max="59" value="0" oninput="handleInputChange()" class="w-full bg-slate-800 text-white font-mono text-center font-bold text-xl rounded-lg py-1.5 border border-slate-600 focus:border-red-500 focus:outline-none">
                             </div>
                         </div>
 
-                        <!-- Raccourcis Temps de cycle fréquents -->
                         <div>
                             <span class="text-xs text-slate-400 block mb-2 font-medium"><i class="fa-solid fa-bolt text-yellow-400 mr-1"></i>Préréglages fréquents usine :</span>
                             <div class="flex flex-wrap gap-2">
@@ -230,12 +182,11 @@
                                 <button onclick="setQuickCycle(1, 15, 0)" class="px-2.5 py-1 text-xs font-semibold bg-slate-700/80 hover:bg-red-600 text-slate-200 hover:text-white rounded-lg transition border border-slate-600">1h 15m</button>
                                 <button onclick="setQuickCycle(1, 30, 0)" class="px-2.5 py-1 text-xs font-semibold bg-slate-700/80 hover:bg-red-600 text-slate-200 hover:text-white rounded-lg transition border border-slate-600">1h 30m</button>
                                 <button onclick="setQuickCycle(2, 0, 0)" class="px-2.5 py-1 text-xs font-semibold bg-slate-700/80 hover:bg-red-600 text-slate-200 hover:text-white rounded-lg transition border border-slate-600">2h 00m</button>
-                                <button onclick="setQuickCycle(2, 30, 0)" class="px-2.5 py-1 text-xs font-semibold bg-slate-700/80 hover:bg-red-600 text-slate-200 hover:text-white rounded-lg transition border border-slate-600">2h 30m</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- INPUTS MODE B (Objectif Hebdo -> Takt Time / Temps de Cycle) -->
+                    <!-- MODE B (Objectif Hebdo) -->
                     <div id="mode-inputs-target" class="hidden lg:col-span-7 space-y-4">
                         <div class="flex justify-between items-center">
                             <label class="text-sm font-semibold text-slate-200">
@@ -251,12 +202,11 @@
                                 <input type="range" id="input-weekly-target-range" min="1" max="80" value="25" oninput="syncTargetInput('range')" class="w-full accent-red-600 cursor-pointer">
                                 <input type="number" id="input-weekly-target-number" min="1" max="100" value="25" oninput="syncTargetInput('number')" class="w-20 bg-slate-800 text-white font-mono text-center font-bold text-xl rounded-lg py-1 border border-slate-600 focus:border-red-500 focus:outline-none">
                             </div>
-                            <p class="text-[11px] text-slate-400"><i class="fa-solid fa-circle-info mr-1 text-red-400"></i>Le système calculera automatiquement le temps de cycle maximal (Takt Time) nécessaire pour tenir cet objectif.</p>
+                            <p class="text-[11px] text-slate-400"><i class="fa-solid fa-circle-info mr-1 text-red-400"></i>Calcule automatiquement le Takt Time nécessaire pour honorer cette cible.</p>
                         </div>
 
-                        <!-- Presets Objectifs -->
                         <div>
-                            <span class="text-xs text-slate-400 block mb-2 font-medium"><i class="fa-solid fa-bullseye text-red-400 mr-1"></i>Objectifs hebdomadaires types :</span>
+                            <span class="text-xs text-slate-400 block mb-2 font-medium"><i class="fa-solid fa-bullseye text-red-400 mr-1"></i>Objectifs types :</span>
                             <div class="flex flex-wrap gap-2">
                                 <button onclick="setQuickTarget(15)" class="px-2.5 py-1 text-xs font-semibold bg-slate-700/80 hover:bg-red-600 text-slate-200 hover:text-white rounded-lg transition border border-slate-600">15 / sem</button>
                                 <button onclick="setQuickTarget(20)" class="px-2.5 py-1 text-xs font-semibold bg-slate-700/80 hover:bg-red-600 text-slate-200 hover:text-white rounded-lg transition border border-slate-600">20 / sem</button>
@@ -267,17 +217,17 @@
                         </div>
                     </div>
 
-                    <!-- PARAMÈTRE TRS / EFFICIENCE (Commun aux 2 modes) -->
+                    <!-- PARAMÈTRE TRS -->
                     <div class="lg:col-span-5 bg-slate-900/90 p-4 rounded-xl border border-slate-700/80 space-y-3">
                         <div class="flex justify-between items-center">
-                            <label class="text-xs font-bold text-slate-200 flex items-center">
+                            <label class="text-xs font-bold text-slate-200 flex items-center" title="Taux Rendement Synthétique / Efficience de ligne">
                                 <i class="fa-solid fa-gauge-high text-emerald-400 mr-1.5"></i>
                                 Taux d'Efficience / TRS (OEE)
                             </label>
                             <span id="trs-value-badge" class="text-sm font-extrabold text-emerald-400 font-mono">85%</span>
                         </div>
 
-                        <input type="range" id="input-trs-range" min="50" max="100" value="85" step="1" oninput="updateCalculations()" class="w-full accent-emerald-500 cursor-pointer">
+                        <input type="range" id="input-trs-range" min="50" max="100" value="85" step="1" oninput="handleInputChange()" class="w-full accent-emerald-500 cursor-pointer">
 
                         <div class="flex justify-between items-center text-[10px] text-slate-400">
                             <span>50% (Dégradé)</span>
@@ -285,7 +235,6 @@
                             <span>100% (Théorique)</span>
                         </div>
 
-                        <!-- Boutons rapides TRS -->
                         <div class="grid grid-cols-4 gap-1.5 pt-1">
                             <button onclick="setTRS(75)" class="py-1 text-[10px] font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 rounded border border-slate-700">75%</button>
                             <button onclick="setTRS(85)" class="py-1 text-[10px] font-bold bg-slate-800 hover:bg-emerald-950 text-emerald-400 rounded border border-emerald-800/50">85% (Std)</button>
@@ -297,11 +246,10 @@
                 </div>
             </div>
 
-            <!-- Cartes Métriques KPIs Récapitulates -->
+            <!-- KPIs Récapitulatifs -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 
-                <!-- KPI 1 : Production Hebdomadaire -->
-                <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-4 shadow-lg flex flex-col justify-between hover:border-red-500/50 transition">
+                <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-4 shadow-lg flex flex-col justify-between">
                     <div class="flex justify-between items-start">
                         <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Production Semaine</span>
                         <div class="w-8 h-8 rounded-lg bg-red-950/80 border border-red-800/50 flex items-center justify-center text-red-400">
@@ -323,8 +271,7 @@
                     </div>
                 </div>
 
-                <!-- KPI 2 : Cadence Journalière -->
-                <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-4 shadow-lg flex flex-col justify-between hover:border-blue-500/50 transition">
+                <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-4 shadow-lg flex flex-col justify-between">
                     <div class="flex justify-between items-start">
                         <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Cadence / Jour</span>
                         <div class="w-8 h-8 rounded-lg bg-blue-950/80 border border-blue-800/50 flex items-center justify-center text-blue-400">
@@ -336,37 +283,28 @@
                             <span id="kpi-daily-real" class="text-3xl font-black text-white font-mono">5.78</span>
                             <span class="text-xs text-slate-400 font-semibold">MH / jour</span>
                         </div>
-                        <div class="text-xs text-slate-400 mt-1 flex items-center space-x-1">
-                            <span>Base journée :</span>
-                            <span class="font-mono font-bold text-slate-300">8h 30m utiles</span>
-                        </div>
+                        <div class="text-xs text-slate-400 mt-1">Base : <span class="font-mono font-bold text-slate-300">8h 30m / jour</span></div>
                     </div>
-                    <span class="text-[10px] text-slate-400"><i class="fa-solid fa-check text-green-400 mr-1"></i>5 jours ouvrés Lundi-Vendredi</span>
+                    <span class="text-[10px] text-slate-400"><i class="fa-solid fa-check text-green-400 mr-1"></i>5 jours ouvrés (Lun-Ven)</span>
                 </div>
 
-                <!-- KPI 3 : Cadence Horaire -->
-                <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-4 shadow-lg flex flex-col justify-between hover:border-amber-500/50 transition">
+                <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-4 shadow-lg flex flex-col justify-between">
                     <div class="flex justify-between items-start">
-                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Cadence Horaire</span>
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Temps de Cycle / Takt</span>
                         <div class="w-8 h-8 rounded-lg bg-amber-950/80 border border-amber-800/50 flex items-center justify-center text-amber-400">
                             <i class="fa-solid fa-stopwatch"></i>
                         </div>
                     </div>
                     <div class="my-3">
                         <div class="flex items-baseline space-x-2">
-                            <span id="kpi-hourly-rate" class="text-3xl font-black text-white font-mono">0.68</span>
-                            <span class="text-xs text-slate-400 font-semibold">MH / heure</span>
+                            <span id="kpi-takt-time" class="text-2xl font-black text-amber-300 font-mono">01h 15m</span>
                         </div>
-                        <div class="text-xs text-slate-400 mt-1 flex items-center space-x-1">
-                            <span>Takt Time Effectif :</span>
-                            <span id="kpi-takt-time" class="font-mono font-bold text-amber-300">01h 15m</span>
-                        </div>
+                        <div class="text-xs text-slate-400 mt-1">Cadence : <span id="kpi-hourly-rate" class="font-mono font-bold text-slate-300">0.68 MH/h</span></div>
                     </div>
-                    <span class="text-[10px] text-slate-400"><i class="fa-solid fa-industry text-amber-400 mr-1"></i>Ligne d'assemblage Trigano</span>
+                    <span class="text-[10px] text-slate-400"><i class="fa-solid fa-industry text-amber-400 mr-1"></i>Ligne d'assemblage</span>
                 </div>
 
-                <!-- KPI 4 : Temps Utile Hebdo -->
-                <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-4 shadow-lg flex flex-col justify-between hover:border-emerald-500/50 transition">
+                <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-4 shadow-lg flex flex-col justify-between">
                     <div class="flex justify-between items-start">
                         <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Heures Utiles PDP</span>
                         <div class="w-8 h-8 rounded-lg bg-emerald-950/80 border border-emerald-800/50 flex items-center justify-center text-emerald-400">
@@ -378,39 +316,32 @@
                             <span id="kpi-hours-useful" class="text-3xl font-black text-white font-mono">36.1h</span>
                             <span class="text-xs text-slate-400 font-semibold">/ 42.5h brut</span>
                         </div>
-                        <div class="text-xs text-slate-400 mt-1 flex items-center space-x-1">
-                            <span>Perte TRS (15%) :</span>
-                            <span id="kpi-hours-lost" class="font-mono font-bold text-red-400">6.4h</span>
-                        </div>
+                        <div class="text-xs text-slate-400 mt-1">Perte TRS : <span id="kpi-hours-lost" class="font-mono font-bold text-red-400">6.4h</span></div>
                     </div>
                     <span id="kpi-trs-summary-text" class="text-[10px] font-bold text-emerald-400"><i class="fa-solid fa-shield-halved mr-1"></i>Efficience TRS à 85%</span>
                 </div>
 
             </div>
 
-            <!-- Graphiques & Analyses Visuelles -->
+            <!-- Graphiques -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                
-                <!-- Graphique à barres : Capacité Quotidienne -->
                 <div class="lg:col-span-2 bg-slate-800/90 border border-slate-700/80 rounded-2xl p-5 shadow-xl">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-sm font-bold text-white flex items-center">
                             <i class="fa-solid fa-chart-column text-red-500 mr-2"></i>
-                            Répartition de la Production par Jour (Lundi - Vendredi)
+                            Capacité de Production Quotidienne (Lundi - Vendredi)
                         </h3>
-                        <span class="text-xs text-slate-400 bg-slate-900 px-2.5 py-1 rounded-md border border-slate-700">Mobil-Homes / jour</span>
                     </div>
                     <div class="h-64 w-full relative">
                         <canvas id="dailyChart"></canvas>
                     </div>
                 </div>
 
-                <!-- Graphique Camembert / Répartition du temps -->
                 <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-5 shadow-xl flex flex-col justify-between">
                     <div class="flex items-center justify-between mb-2">
                         <h3 class="text-sm font-bold text-white flex items-center">
                             <i class="fa-solid fa-chart-pie text-emerald-400 mr-2"></i>
-                            Bilan Temps Hebdo (42.5h)
+                            Répartition Temps Hebdo (42.5h)
                         </h3>
                     </div>
                     <div class="h-52 w-full relative flex items-center justify-center">
@@ -418,19 +349,18 @@
                     </div>
                     <div class="grid grid-cols-2 gap-2 text-center text-xs mt-3 pt-3 border-t border-slate-700">
                         <div class="bg-slate-900 p-2 rounded-lg border border-slate-700">
-                            <span class="block text-[10px] text-slate-400">Temps Production</span>
+                            <span class="block text-[10px] text-slate-400">Production Utile</span>
                             <span id="chart-time-prod" class="font-mono font-bold text-emerald-400">36.1 h</span>
                         </div>
                         <div class="bg-slate-900 p-2 rounded-lg border border-slate-700">
-                            <span class="block text-[10px] text-slate-400">Marge / Pertes TRS</span>
+                            <span class="block text-[10px] text-slate-400">Pertes TRS</span>
                             <span id="chart-time-loss" class="font-mono font-bold text-red-400">6.4 h</span>
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <!-- Tableau Synthétique du PDP Hebdomadaire -->
+            <!-- Tableau Synthétique PDP -->
             <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-5 shadow-xl">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-2">
                     <div>
@@ -438,10 +368,9 @@
                             <i class="fa-solid fa-table-list text-red-500 mr-2"></i>
                             Synthèse PDP Hebdomadaire Jour par Jour
                         </h3>
-                        <p class="text-xs text-slate-400">Volume de production estimé par journée de travail</p>
                     </div>
                     <div class="bg-slate-900 border border-slate-700 px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300">
-                        Total Semaine : <span id="table-total-units" class="text-red-400 font-bold text-sm">28 Unités</span>
+                        Total Semaine PDP : <span id="table-total-units" class="text-red-400 font-bold text-sm">28 Unités</span>
                     </div>
                 </div>
 
@@ -450,7 +379,7 @@
                         <thead class="bg-slate-900/90 text-slate-400 uppercase text-[10px] font-bold border-b border-slate-700">
                             <tr>
                                 <th class="py-3 px-4">Journée</th>
-                                <th class="py-3 px-4">Plage Horaires Usine</th>
+                                <th class="py-3 px-4">Plage Horaire Usine</th>
                                 <th class="py-3 px-4 text-center">Temps Brut</th>
                                 <th class="py-3 px-4 text-center">Temps Utile (TRS)</th>
                                 <th class="py-3 px-4 text-center">Capacité Théorique</th>
@@ -459,7 +388,7 @@
                             </tr>
                         </thead>
                         <tbody id="pdp-summary-tbody" class="divide-y divide-slate-700/60 font-medium">
-                            <!-- Injected by JavaScript -->
+                            <!-- Généré via JS -->
                         </tbody>
                     </table>
                 </div>
@@ -467,683 +396,369 @@
 
         </div>
 
-        <!-- TAB 2 : PLANNING & TIMELINE DETAILLE DES SORTIES -->
+        <!-- TAB 2 : TIMELINE DÉTAILLÉE DES SORTIES -->
         <div id="tab-timeline" class="hidden space-y-6">
-            
             <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-5 shadow-xl">
                 <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
                     <div>
                         <h2 class="text-lg font-bold text-white flex items-center">
                             <i class="fa-solid fa-clock-rotate-left text-red-500 mr-2"></i>
-                            Chronologie de Sortie des Mobil-Homes (Ligne Trigano)
+                            Planning & Heures de Sortie des Mobil-Homes
                         </h2>
-                        <p class="text-xs text-slate-400">Heure exacte d'achèvement de chaque unité en tenant compte des pauses de 12h-13h</p>
-                    </div>
-
-                    <!-- Barre de recherche / filtre -->
-                    <div class="flex items-center space-x-2">
-                        <div class="relative">
-                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
-                            <input type="text" id="timeline-search" placeholder="Filtrer n° mobil-home..." oninput="filterTimeline()" class="bg-slate-900 text-xs text-white pl-8 pr-3 py-2 rounded-lg border border-slate-700 focus:outline-none focus:border-red-500">
-                        </div>
+                        <p class="text-xs text-slate-400">Heure exacte d'achèvement théorique (prend en compte la pause déjeuner 12h00-13h00)</p>
                     </div>
                 </div>
 
-                <!-- Grille chronologique dynamique -->
-                <div class="overflow-x-auto max-h-[600px] overflow-y-auto pr-1">
+                <div class="overflow-x-auto">
                     <table class="w-full text-left text-xs text-slate-300">
-                        <thead class="bg-slate-900 sticky top-0 z-10 text-slate-400 uppercase text-[10px] font-bold border-b border-slate-700">
+                        <thead class="bg-slate-900/90 text-slate-400 uppercase text-[10px] font-bold border-b border-slate-700">
                             <tr>
                                 <th class="py-3 px-4">N° Mobil-Home</th>
                                 <th class="py-3 px-4">Jour de Sortie</th>
-                                <th class="py-3 px-4">Poste / Shift</th>
-                                <th class="py-3 px-4">Heure Exacte Fin</th>
-                                <th class="py-3 px-4">Durée Assemblage</th>
-                                <th class="py-3 px-4">Statut Ligne</th>
+                                <th class="py-3 px-4">Heure de Sortie</th>
+                                <th class="py-3 px-4">Poste / Temps Total</th>
+                                <th class="py-3 px-4 text-right">Statut Ligne</th>
                             </tr>
                         </thead>
-                        <tbody id="timeline-tbody" class="divide-y divide-slate-700/50">
-                            <!-- Injected by JS -->
+                        <tbody id="timeline-tbody" class="divide-y divide-slate-700/60 font-medium font-mono">
+                            <!-- Généré via JS -->
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </div>
 
-        <!-- TAB 3 : PARAMÈTRES HORAIRES ET SHIFTS -->
+        <!-- TAB 3 : SAUVEGARDES & FICHIERS -->
         <div id="tab-settings" class="hidden space-y-6">
-            
-            <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-5 sm:p-6 shadow-xl">
-                <h2 class="text-lg font-bold text-white mb-2 flex items-center">
-                    <i class="fa-solid fa-gear text-red-500 mr-2"></i>
-                    Configuration des Horaires d'Usine & Postes
-                </h2>
-                <p class="text-xs text-slate-400 mb-6">Ajustez les plages de travail quotidien, les pauses et les jours d'ouverture de l'usine Trigano MDC.</p>
+            <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl p-6 shadow-xl space-y-6">
+                <div>
+                    <h2 class="text-lg font-bold text-white flex items-center">
+                        <i class="fa-solid fa-floppy-disk text-red-500 mr-2"></i>
+                        Gestion des Sauvegardes & Paramètres
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-1">Vos configurations sont sauvegardées automatiquement dans votre navigateur. Vous pouvez également exporter vos données dans un fichier.</p>
+                </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    
-                    <!-- Paramètres Postes Matin & Après-Midi -->
-                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-700 space-y-4">
-                        <h3 class="text-sm font-bold text-slate-200 border-b border-slate-700 pb-2 flex items-center">
-                            <i class="fa-solid fa-sun text-amber-400 mr-2"></i>Poste de Matin & Après-Midi
+                    <!-- Export / Import -->
+                    <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-700/80 space-y-4">
+                        <h3 class="text-sm font-bold text-white flex items-center">
+                            <i class="fa-solid fa-file-export text-emerald-400 mr-2"></i>
+                            Exporter / Importer une Configuration
                         </h3>
-
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Matin : Début</label>
-                                <input type="time" id="shift-morning-start" value="07:30" onchange="updateShiftSettings()" class="w-full bg-slate-800 text-white font-mono text-center rounded-lg py-2 border border-slate-600 focus:border-red-500 focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Matin : Fin (Pause)</label>
-                                <input type="time" id="shift-morning-end" value="12:00" onchange="updateShiftSettings()" class="w-full bg-slate-800 text-white font-mono text-center rounded-lg py-2 border border-slate-600 focus:border-red-500 focus:outline-none">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">A.-Midi : Reprise</label>
-                                <input type="time" id="shift-afternoon-start" value="13:00" onchange="updateShiftSettings()" class="w-full bg-slate-800 text-white font-mono text-center rounded-lg py-2 border border-slate-600 focus:border-red-500 focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">A.-Midi : Fin Journée</label>
-                                <input type="time" id="shift-afternoon-end" value="17:00" onchange="updateShiftSettings()" class="w-full bg-slate-800 text-white font-mono text-center rounded-lg py-2 border border-slate-600 focus:border-red-500 focus:outline-none">
-                            </div>
-                        </div>
-
-                        <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 text-xs text-slate-300 space-y-1">
-                            <div class="flex justify-between">
-                                <span>Durée Matin :</span>
-                                <span id="settings-morning-duration" class="font-mono font-bold text-slate-100">4h 30m (270 min)</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Pause Méridienne :</span>
-                                <span class="font-mono font-bold text-amber-400">1h 00m (60 min)</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Durée Après-Midi :</span>
-                                <span id="settings-afternoon-duration" class="font-mono font-bold text-slate-100">4h 00m (240 min)</span>
-                            </div>
-                            <div class="flex justify-between pt-2 border-t border-slate-700 text-red-400 font-bold">
-                                <span>Total Quotidien Brut :</span>
-                                <span id="settings-daily-total" class="font-mono">8h 30m (510 min)</span>
-                            </div>
+                        <p class="text-xs text-slate-400">Téléchargez un fichier JSON pour sauvegarder ou partager ce réglage PDP.</p>
+                        
+                        <div class="flex flex-wrap gap-3">
+                            <button onclick="exportConfigToFile()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg font-semibold text-xs shadow transition flex items-center space-x-2">
+                                <i class="fa-solid fa-download"></i>
+                                <span>Sauvegarder en Fichier JSON</span>
+                            </button>
+                            
+                            <label class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-4 py-2 rounded-lg font-semibold text-xs cursor-pointer border border-slate-600 transition flex items-center space-x-2">
+                                <i class="fa-solid fa-upload"></i>
+                                <span>Charger un Fichier JSON</span>
+                                <input type="file" id="import-file-input" accept=".json" onchange="importConfigFromFile(event)" class="hidden">
+                            </label>
                         </div>
                     </div>
 
-                    <!-- Sélecteur des Jours Ouvrés -->
-                    <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-700 space-y-4">
-                        <h3 class="text-sm font-bold text-slate-200 border-b border-slate-700 pb-2 flex items-center">
-                            <i class="fa-solid fa-calendar-check text-red-400 mr-2"></i>Jours de Production Actifs
+                    <!-- Reset / Effacer -->
+                    <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-700/80 space-y-4">
+                        <h3 class="text-sm font-bold text-white flex items-center">
+                            <i class="fa-solid fa-trash-arrow-up text-amber-400 mr-2"></i>
+                            Réinitialisation Usine
                         </h3>
-
-                        <div class="space-y-2 text-xs">
-                            <label class="flex items-center justify-between p-2 rounded-lg bg-slate-800 hover:bg-slate-750 border border-slate-700 cursor-pointer">
-                                <span class="font-bold text-slate-200">Lundi</span>
-                                <input type="checkbox" id="day-active-0" checked onchange="updateShiftSettings()" class="w-4 h-4 accent-red-600 rounded">
-                            </label>
-                            <label class="flex items-center justify-between p-2 rounded-lg bg-slate-800 hover:bg-slate-750 border border-slate-700 cursor-pointer">
-                                <span class="font-bold text-slate-200">Mardi</span>
-                                <input type="checkbox" id="day-active-1" checked onchange="updateShiftSettings()" class="w-4 h-4 accent-red-600 rounded">
-                            </label>
-                            <label class="flex items-center justify-between p-2 rounded-lg bg-slate-800 hover:bg-slate-750 border border-slate-700 cursor-pointer">
-                                <span class="font-bold text-slate-200">Mercredi</span>
-                                <input type="checkbox" id="day-active-2" checked onchange="updateShiftSettings()" class="w-4 h-4 accent-red-600 rounded">
-                            </label>
-                            <label class="flex items-center justify-between p-2 rounded-lg bg-slate-800 hover:bg-slate-750 border border-slate-700 cursor-pointer">
-                                <span class="font-bold text-slate-200">Jeudi</span>
-                                <input type="checkbox" id="day-active-3" checked onchange="updateShiftSettings()" class="w-4 h-4 accent-red-600 rounded">
-                            </label>
-                            <label class="flex items-center justify-between p-2 rounded-lg bg-slate-800 hover:bg-slate-750 border border-slate-700 cursor-pointer">
-                                <span class="font-bold text-slate-200">Vendredi</span>
-                                <input type="checkbox" id="day-active-4" checked onchange="updateShiftSettings()" class="w-4 h-4 accent-red-600 rounded">
-                            </label>
-                            <label class="flex items-center justify-between p-2 rounded-lg bg-slate-800 hover:bg-slate-750 border border-slate-700 opacity-60 cursor-pointer">
-                                <span class="font-bold text-slate-400">Samedi (Heures Suppl.)</span>
-                                <input type="checkbox" id="day-active-5" onchange="updateShiftSettings()" class="w-4 h-4 accent-red-600 rounded">
-                            </label>
-                        </div>
-
-                        <button onclick="resetDefaultHours()" class="w-full text-xs font-semibold py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-600 transition">
-                            <i class="fa-solid fa-arrow-rotate-left mr-1.5"></i>Réinitialiser aux horaires par défaut Trigano
+                        <p class="text-xs text-slate-400">Restaurer la configuration par défaut (Cycle 1h15m, TRS 85%, shift 07h30-12h / 13h-17h).</p>
+                        
+                        <button onclick="resetToDefaults()" class="bg-amber-600/80 hover:bg-amber-500 text-white px-4 py-2 rounded-lg font-semibold text-xs transition flex items-center space-x-2">
+                            <i class="fa-solid fa-rotate-left"></i>
+                            <span>Réinitialiser les paramètres</span>
                         </button>
                     </div>
-
                 </div>
             </div>
-
         </div>
 
     </main>
 
-    <!-- IMPRESSION / RAPPORT DE SYNTHÈSE PDF (Visible uniquement à l'impression) -->
-    <div class="print-only max-w-4xl mx-auto p-8 font-sans">
-        <div class="flex justify-between items-center border-b-2 border-red-600 pb-4 mb-6">
-            <div>
-                <h1 class="text-3xl font-black text-red-600 tracking-tight">TRIGANO MDC</h1>
-                <p class="text-sm text-slate-700 font-bold">LIGNE DE PRODUCTION MOBIL-HOMES</p>
-                <p class="text-xs text-slate-500">Plan Directeur de Production (PDP) Hebdomadaire</p>
-            </div>
-            <div class="text-right text-xs text-slate-600">
-                <p>Édité le : <span id="print-date" class="font-bold">--/--/----</span></p>
-                <p>Référence Usine : <span class="font-mono">MDC-PDP-2026</span></p>
-                <p class="text-red-600 font-bold mt-1">CONFIDENTIALITÉ INTERNE</p>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-3 gap-4 mb-6">
-            <div class="border border-slate-300 p-3 rounded">
-                <span class="block text-[10px] text-slate-500 uppercase">Temps de Cycle Gamme</span>
-                <span id="print-cycle-time" class="text-lg font-bold font-mono">01h 15m 00s</span>
-            </div>
-            <div class="border border-slate-300 p-3 rounded">
-                <span class="block text-[10px] text-slate-500 uppercase">Taux d'Efficience (TRS)</span>
-                <span id="print-trs" class="text-lg font-bold font-mono text-emerald-700">85%</span>
-            </div>
-            <div class="border border-slate-300 p-3 rounded">
-                <span class="block text-[10px] text-slate-500 uppercase">Objectif PDP Semaine</span>
-                <span id="print-weekly-total" class="text-lg font-bold font-mono text-red-600">28 Mobil-Homes</span>
-            </div>
-        </div>
-
-        <h2 class="text-base font-bold text-slate-800 mb-2 border-b border-slate-300 pb-1">1. Répartition de Production par Journée</h2>
-        <table class="w-full text-xs text-slate-800 border-collapse border border-slate-300 mb-6">
-            <thead>
-                <tr class="bg-slate-100 font-bold border-b border-slate-300">
-                    <th class="p-2 border-r border-slate-300 text-left">Jour</th>
-                    <th class="p-2 border-r border-slate-300 text-center">Horaires</th>
-                    <th class="p-2 border-r border-slate-300 text-center">Heures Utiles</th>
-                    <th class="p-2 border-r border-slate-300 text-center">Quantité Théorique</th>
-                    <th class="p-2 text-center">Quantité Réelle PDP</th>
-                </tr>
-            </thead>
-            <tbody id="print-tbody">
-                <!-- JS populated -->
-            </tbody>
-        </table>
-
-        <div class="mt-8 pt-4 border-t border-slate-300 flex justify-between items-end text-xs text-slate-600">
-            <div>
-                <p class="font-bold">Visa Responsable de Production :</p>
-                <div class="h-16 w-48 border border-slate-300 rounded mt-1 bg-slate-50"></div>
-            </div>
-            <div class="text-right">
-                <p>Trigano MDC Mobil-Homes</p>
-                <p>Système PDP V2.4 - Généré automatiquement</p>
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-800 py-4 text-center text-xs text-slate-500 no-print">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div>
-                <span class="font-bold text-slate-400">TRIGANO MDC</span> &copy; 2026 - Outil de Planification Ligne Mobil-Homes
-            </div>
-            <div class="flex items-center space-x-4">
-                <span class="text-slate-400"><i class="fa-solid fa-clock text-red-500 mr-1"></i>07h30-12h00 | 13h00-17h00</span>
-                <span class="text-emerald-400 font-semibold"><i class="fa-solid fa-circle text-[8px] mr-1"></i>Système PDP Actif</span>
-            </div>
+    <footer class="bg-slate-900 border-t border-slate-800 py-4 no-print mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
+            TRIGANO MDC - Outil de Planification de Production PDP Mobil-Homes &bull; Horaires : 07h30 - 12h00 / 13h00 - 17h00 (5 jours/semaine)
         </div>
     </footer>
 
+    <!-- SCRIPT APPLICATION -->
     <script>
-        // État global de l'application PDP
-        const state = {
-            mode: 'cycle', // 'cycle' (Mode A) ou 'target' (Mode B)
-            cycleTimeSec: 4500, // 1h 15m = 4500 secondes par défaut
-            weeklyTarget: 25, // Objectif mobil-homes par semaine pour mode B
-            trsPercent: 85, // TRS par défaut = 85%
-            
-            // Configuration des horaires
-            shifts: {
-                morningStart: '07:30',
-                morningEnd: '12:00',
-                afternoonStart: '13:00',
-                afternoonEnd: '17:00'
-            },
-            
-            // Jours actifs (0: Lundi, 1: Mardi, ..., 4: Vendredi, 5: Samedi)
-            activeDays: [true, true, true, true, true, false],
-            dayNames: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-            
-            // Terme de recherche filtre timeline
-            timelineFilter: ''
+        // --- ÉTAT GLOBAL DE L'APPLICATION ---
+        let appState = {
+            mode: 'cycle', // 'cycle' ou 'target'
+            cycleH: 1,
+            cycleM: 15,
+            cycleS: 0,
+            targetUnits: 25,
+            trs: 85,
+            hoursPerDay: 8.5, // 07h30-12h00 (4.5h) + 13h00-17h00 (4.0h) = 8.5h/jour
+            workDaysCount: 5  // Lundi au Vendredi = 42.5h brut
         };
 
-        // Instances Graphiques Chart.js
         let dailyChartInstance = null;
         let timeChartInstance = null;
 
-        // Utilitaires de conversion de temps
-        function timeToSeconds(timeStr) {
-            const parts = timeStr.split(':');
-            return parseInt(parts[0], 10) * 3600 + parseInt(parts[1], 10) * 60;
-        }
+        // --- CHARGEMENT INITIAL ---
+        window.addEventListener('DOMContentLoaded', () => {
+            loadFromLocalStorage();
+            updateCalculations();
+        });
 
-        function secondsToTimeStr(sec) {
-            const h = Math.floor(sec / 3600);
-            const m = Math.floor((sec % 3600) / 60);
-            return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
-        }
-
-        function formatDurationSec(totalSec) {
-            const h = Math.floor(totalSec / 3600);
-            const m = Math.floor((totalSec % 3600) / 60);
-            const s = Math.floor(totalSec % 60);
-
-            if (h > 0) {
-                return `${String(h).padStart(2, '0')}h ${String(m).padStart(2, '0')}m ${String(s).padStart(2, '0')}s`;
-            }
-            return `${String(m).padStart(2, '0')}m ${String(s).padStart(2, '0')}s`;
-        }
-
-        // Changement d'onglet UI
-        function switchTab(tabId) {
-            ['dashboard', 'timeline', 'settings'].forEach(id => {
-                document.getElementById(`tab-${id}`).classList.add('hidden');
-                const btn = document.getElementById(`tab-btn-${id}`);
-                btn.classList.remove('bg-red-600', 'text-white', 'shadow-md', 'shadow-red-600/30');
-                btn.classList.add('text-slate-300');
+        // --- NAVIGATION ONGLETS ---
+        function switchTab(tabName) {
+            ['dashboard', 'timeline', 'settings'].forEach(t => {
+                document.getElementById(`tab-${t}`).classList.add('hidden');
+                document.getElementById(`tab-btn-${t}`).className = "px-3.5 py-1.5 rounded-lg font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700";
             });
 
-            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
-            const activeBtn = document.getElementById(`tab-btn-${tabId}`);
-            activeBtn.classList.add('bg-red-600', 'text-white', 'shadow-md', 'shadow-red-600/30');
-            activeBtn.classList.remove('text-slate-300');
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+            document.getElementById(`tab-btn-${tabName}`).className = "px-3.5 py-1.5 rounded-lg font-semibold transition-all bg-red-600 text-white shadow-md shadow-red-600/30";
         }
 
-        // Changement de mode (Mode A vs Mode B)
-        function setMode(newMode) {
-            state.mode = newMode;
-            const btnCycle = document.getElementById('mode-btn-cycle');
-            const btnTarget = document.getElementById('mode-btn-target');
-            const inputsCycle = document.getElementById('mode-inputs-cycle');
-            const inputsTarget = document.getElementById('mode-inputs-target');
+        // --- CHANGEMENT DE MODE ---
+        function setMode(mode) {
+            appState.mode = mode;
+            const cycleBtn = document.getElementById('mode-btn-cycle');
+            const targetBtn = document.getElementById('mode-btn-target');
+            const cycleInputs = document.getElementById('mode-inputs-cycle');
+            const targetInputs = document.getElementById('mode-inputs-target');
 
-            if (newMode === 'cycle') {
-                btnCycle.classList.add('bg-red-600', 'text-white', 'shadow');
-                btnCycle.classList.remove('text-slate-400');
-                btnTarget.classList.remove('bg-red-600', 'text-white', 'shadow');
-                btnTarget.classList.add('text-slate-400');
-
-                inputsCycle.classList.remove('hidden');
-                inputsTarget.classList.add('hidden');
+            if (mode === 'cycle') {
+                cycleBtn.className = "px-4 py-2 rounded-lg text-xs font-bold transition-all bg-red-600 text-white shadow";
+                targetBtn.className = "px-4 py-2 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white";
+                cycleInputs.classList.remove('hidden');
+                targetInputs.classList.add('hidden');
             } else {
-                btnTarget.classList.add('bg-red-600', 'text-white', 'shadow');
-                btnTarget.classList.remove('text-slate-400');
-                btnCycle.classList.remove('bg-red-600', 'text-white', 'shadow');
-                btnCycle.classList.add('text-slate-400');
-
-                inputsTarget.classList.remove('hidden');
-                inputsCycle.classList.add('hidden');
+                targetBtn.className = "px-4 py-2 rounded-lg text-xs font-bold transition-all bg-red-600 text-white shadow";
+                cycleBtn.className = "px-4 py-2 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white";
+                targetInputs.classList.remove('hidden');
+                cycleInputs.classList.add('hidden');
             }
 
-            updateCalculations();
+            handleInputChange();
         }
 
-        // Préréglages rapides temps de cycle
+        // --- PRESETS RAPIDES ---
         function setQuickCycle(h, m, s) {
             document.getElementById('input-cycle-h').value = h;
             document.getElementById('input-cycle-m').value = m;
             document.getElementById('input-cycle-s').value = s;
-            updateCalculations();
+            handleInputChange();
         }
 
-        // Préréglages rapides objectifs
         function setQuickTarget(target) {
             document.getElementById('input-weekly-target-range').value = target;
             document.getElementById('input-weekly-target-number').value = target;
-            state.weeklyTarget = target;
-            updateCalculations();
-        }
-
-        function syncTargetInput(source) {
-            if (source === 'range') {
-                const val = document.getElementById('input-weekly-target-range').value;
-                document.getElementById('input-weekly-target-number').value = val;
-                state.weeklyTarget = parseInt(val, 10);
-            } else {
-                const val = document.getElementById('input-weekly-target-number').value;
-                document.getElementById('input-weekly-target-range').value = val;
-                state.weeklyTarget = parseInt(val, 10) || 1;
-            }
-            updateCalculations();
+            handleInputChange();
         }
 
         function setTRS(trs) {
             document.getElementById('input-trs-range').value = trs;
-            updateCalculations();
+            handleInputChange();
         }
 
-        // Calcul principal PDP
-        function calculateMetrics() {
-            // 1. Calcul de la durée de travail journalière
-            const mStart = timeToSeconds(state.shifts.morningStart);
-            const mEnd = timeToSeconds(state.shifts.morningEnd);
-            const aStart = timeToSeconds(state.shifts.afternoonStart);
-            const aEnd = timeToSeconds(state.shifts.afternoonEnd);
-
-            const morningSec = Math.max(0, mEnd - mStart);
-            const afternoonSec = Math.max(0, aEnd - aStart);
-            const dailyGrossSec = morningSec + afternoonSec;
-
-            // Nombre de jours actifs
-            const activeDaysCount = state.activeDays.filter(Boolean).length;
-            const weeklyGrossSec = dailyGrossSec * activeDaysCount;
-
-            const trsFactor = state.trsPercent / 100;
-            const dailyUsefulSec = dailyGrossSec * trsFactor;
-            const weeklyUsefulSec = weeklyGrossSec * trsFactor;
-
-            let effectiveCycleSec = state.cycleTimeSec;
-
-            // Si Mode B : calculer le Temps de cycle requis en fonction de l'objectif
-            if (state.mode === 'target') {
-                if (state.weeklyTarget > 0) {
-                    effectiveCycleSec = Math.round(weeklyUsefulSec / state.weeklyTarget);
-                } else {
-                    effectiveCycleSec = 3600;
-                }
+        function syncTargetInput(source) {
+            if (source === 'range') {
+                document.getElementById('input-weekly-target-number').value = document.getElementById('input-weekly-target-range').value;
             } else {
-                // Mode A : lire depuis les champs H / M / S
-                const h = parseInt(document.getElementById('input-cycle-h').value, 10) || 0;
-                const m = parseInt(document.getElementById('input-cycle-m').value, 10) || 0;
-                const s = parseInt(document.getElementById('input-cycle-s').value, 10) || 0;
-                effectiveCycleSec = Math.max(1, h * 3600 + m * 60 + s);
+                document.getElementById('input-weekly-target-range').value = document.getElementById('input-weekly-target-number').value;
+            }
+            handleInputChange();
+        }
+
+        // --- GESTION DES MODIFICATIONS ---
+        function handleInputChange() {
+            // Lecture des données du formulaire
+            appState.cycleH = parseInt(document.getElementById('input-cycle-h').value) || 0;
+            appState.cycleM = parseInt(document.getElementById('input-cycle-m').value) || 0;
+            appState.cycleS = parseInt(document.getElementById('input-cycle-s').value) || 0;
+            appState.targetUnits = parseFloat(document.getElementById('input-weekly-target-number').value) || 1;
+            appState.trs = parseFloat(document.getElementById('input-trs-range').value) || 85;
+
+            updateCalculations();
+            saveToLocalStorage();
+        }
+
+        // --- CALCULS PDP ---
+        function updateCalculations() {
+            const grossHoursWeek = appState.hoursPerDay * appState.workDaysCount; // 42.5h
+            const trsRatio = appState.trs / 100;
+            const usefulHoursWeek = grossHoursWeek * trsRatio;
+            const lostHoursWeek = grossHoursWeek - usefulHoursWeek;
+
+            let cycleTimeSeconds = 0;
+            let weeklyRealTarget = 0;
+
+            if (appState.mode === 'cycle') {
+                cycleTimeSeconds = (appState.cycleH * 3600) + (appState.cycleM * 60) + appState.cycleS;
+                if (cycleTimeSeconds <= 0) cycleTimeSeconds = 1;
+                weeklyRealTarget = (usefulHoursWeek * 3600) / cycleTimeSeconds;
+            } else {
+                // Mode Objectif -> Calcul du Takt Time
+                weeklyRealTarget = appState.targetUnits;
+                const totalUsefulSeconds = usefulHoursWeek * 3600;
+                cycleTimeSeconds = totalUsefulSeconds / weeklyRealTarget;
             }
 
-            // Calculs volumes de production
-            const weeklyTheoUnits = weeklyGrossSec / effectiveCycleSec;
-            const weeklyRealUnits = weeklyUsefulSec / effectiveCycleSec;
+            const cycleTimeHours = cycleTimeSeconds / 3600;
+            const weeklyTheoUnits = (grossHoursWeek * 3600) / cycleTimeSeconds;
+            const dailyRealUnits = weeklyRealTarget / appState.workDaysCount;
+            const hourlyRate = 1 / cycleTimeHours;
 
-            const dailyTheoUnits = dailyGrossSec / effectiveCycleSec;
-            const dailyRealUnits = dailyUsefulSec / effectiveCycleSec;
+            // Mise à jour des Badges & Textes UI
+            const formattedCycle = formatSecondsToHMS(cycleTimeSeconds);
+            document.getElementById('cycle-time-display-badge').innerText = formattedCycle;
+            document.getElementById('target-display-badge').innerText = `${weeklyRealTarget.toFixed(1)} Unités / Semaine`;
+            document.getElementById('trs-value-badge').innerText = `${appState.trs}%`;
 
-            const hourlyRate = 3600 / effectiveCycleSec;
+            // KPIs
+            document.getElementById('kpi-weekly-real').innerText = weeklyRealTarget.toFixed(1);
+            document.getElementById('kpi-weekly-theo').innerText = weeklyTheoUnits.toFixed(1);
+            document.getElementById('kpi-daily-real').innerText = dailyRealUnits.toFixed(2);
+            document.getElementById('kpi-takt-time').innerText = formattedCycle;
+            document.getElementById('kpi-hourly-rate').innerText = hourlyRate.toFixed(2);
+            document.getElementById('kpi-hours-useful').innerText = `${usefulHoursWeek.toFixed(1)}h`;
+            document.getElementById('kpi-hours-lost').innerText = `${lostHoursWeek.toFixed(1)}h`;
+            document.getElementById('kpi-trs-summary-text').innerHTML = `<i class="fa-solid fa-shield-halved mr-1"></i>Efficience TRS à ${appState.trs}%`;
+            document.getElementById('table-total-units').innerText = `${weeklyRealTarget.toFixed(1)} Mobil-Homes`;
 
-            return {
-                dailyGrossSec,
-                weeklyGrossSec,
-                dailyUsefulSec,
-                weeklyUsefulSec,
-                effectiveCycleSec,
-                activeDaysCount,
-                weeklyTheoUnits,
-                weeklyRealUnits,
-                dailyTheoUnits,
-                dailyRealUnits,
-                hourlyRate,
-                morningSec,
-                afternoonSec
-            };
+            // Bilan graphique
+            document.getElementById('chart-time-prod').innerText = `${usefulHoursWeek.toFixed(1)} h`;
+            document.getElementById('chart-time-loss').innerText = `${lostHoursWeek.toFixed(1)} h`;
+
+            // Mise à jour des Tableaux & Graphiques
+            renderSummaryTable(dailyRealUnits, usefulHoursWeek, weeklyRealTarget);
+            renderTimeline(cycleTimeSeconds);
+            renderCharts(dailyRealUnits, usefulHoursWeek, lostHoursWeek);
         }
 
-        // Mis à jour générale des calculs et de l'UI
-        function updateCalculations() {
-            state.trsPercent = parseInt(document.getElementById('input-trs-range').value, 10);
-            
-            const metrics = calculateMetrics();
-
-            // Mettre à jour state.cycleTimeSec
-            state.cycleTimeSec = metrics.effectiveCycleSec;
-
-            // Mettre à jour Badges
-            document.getElementById('trs-value-badge').innerText = `${state.trsPercent}%`;
-            document.getElementById('cycle-time-display-badge').innerText = formatDurationSec(metrics.effectiveCycleSec);
-            document.getElementById('target-display-badge').innerText = `${state.weeklyTarget} Unités / Semaine`;
-
-            // Mettre à jour KPIs
-            document.getElementById('kpi-weekly-real').innerText = metrics.weeklyRealUnits.toFixed(1);
-            document.getElementById('kpi-weekly-theo').innerText = metrics.weeklyTheoUnits.toFixed(1);
-            document.getElementById('kpi-weekly-bar').style.width = `${Math.min(100, state.trsPercent)}%`;
-
-            document.getElementById('kpi-daily-real').innerText = metrics.dailyRealUnits.toFixed(2);
-            document.getElementById('kpi-hourly-rate').innerText = metrics.hourlyRate.toFixed(2);
-            document.getElementById('kpi-takt-time').innerText = formatDurationSec(metrics.effectiveCycleSec);
-
-            const hoursUseful = (metrics.weeklyUsefulSec / 3600).toFixed(1);
-            const hoursGross = (metrics.weeklyGrossSec / 3600).toFixed(1);
-            const hoursLost = ((metrics.weeklyGrossSec - metrics.weeklyUsefulSec) / 3600).toFixed(1);
-
-            document.getElementById('kpi-hours-useful').innerText = `${hoursUseful}h`;
-            document.getElementById('kpi-hours-lost').innerText = `${hoursLost}h`;
-            document.getElementById('kpi-trs-summary-text').innerHTML = `<i class="fa-solid fa-shield-halved mr-1"></i>Efficience TRS à ${state.trsPercent}%`;
-
-            // Mis à jour Tableau de synthèse PDP
-            renderSummaryTable(metrics);
-
-            // Mis à jour Timeline
-            renderTimeline(metrics);
-
-            // Mis à jour Graphiques
-            renderCharts(metrics);
-
-            // Mis à jour Impression
-            renderPrintSheet(metrics);
-        }
-
-        // Génération du tableau résumé jour par jour
-        function renderSummaryTable(m) {
+        // --- MISE À JOUR DES TABLEAUX ---
+        function renderSummaryTable(dailyUnits, usefulHours, totalWeekly) {
+            const days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
             const tbody = document.getElementById('pdp-summary-tbody');
             tbody.innerHTML = '';
 
-            let cumulatedReal = 0;
+            let cumul = 0;
+            const dailyUsefulH = usefulHours / 5;
 
-            for (let i = 0; i < 6; i++) {
-                if (!state.activeDays[i]) continue;
-
-                const dayName = state.dayNames[i];
-                const dailyReal = m.dailyRealUnits;
-                const dailyTheo = m.dailyTheoUnits;
-                cumulatedReal += dailyReal;
-
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-750 transition";
-                tr.innerHTML = `
-                    <td class="py-3 px-4 font-bold text-white flex items-center">
-                        <i class="fa-solid fa-calendar-day text-red-500 mr-2"></i>${dayName}
-                    </td>
-                    <td class="py-3 px-4 font-mono text-xs">
-                        ${state.shifts.morningStart}-${state.shifts.morningEnd} | ${state.shifts.afternoonStart}-${state.shifts.afternoonEnd}
-                    </td>
-                    <td class="py-3 px-4 text-center font-mono text-slate-300">
-                        ${(m.dailyGrossSec / 3600).toFixed(1)}h
-                    </td>
-                    <td class="py-3 px-4 text-center font-mono text-emerald-400 font-bold">
-                        ${(m.dailyUsefulSec / 3600).toFixed(1)}h
-                    </td>
-                    <td class="py-3 px-4 text-center font-mono text-slate-400">
-                        ${dailyTheo.toFixed(2)} MH
-                    </td>
-                    <td class="py-3 px-4 text-center font-mono font-bold text-red-400 text-sm">
-                        ${dailyReal.toFixed(2)} MH
-                    </td>
-                    <td class="py-3 px-4 text-right font-mono font-bold text-white">
-                        ${cumulatedReal.toFixed(1)} MH
-                    </td>
+            days.forEach(day => {
+                cumul += dailyUnits;
+                const row = document.createElement('tr');
+                row.className = "hover:bg-slate-800/50 transition";
+                row.innerHTML = `
+                    <td class="py-3 px-4 font-bold text-white">${day}</td>
+                    <td class="py-3 px-4 text-slate-400">07h30 - 12h00 | 13h00 - 17h00</td>
+                    <td class="py-3 px-4 text-center font-mono">8h 30m</td>
+                    <td class="py-3 px-4 text-center font-mono text-emerald-400 font-bold">${dailyUsefulH.toFixed(2)}h</td>
+                    <td class="py-3 px-4 text-center font-mono text-slate-400">${(dailyUnits / (appState.trs/100)).toFixed(2)} MH</td>
+                    <td class="py-3 px-4 text-center font-mono font-extrabold text-red-400">${dailyUnits.toFixed(2)} MH</td>
+                    <td class="py-3 px-4 text-right font-mono font-bold text-white">${cumul.toFixed(2)} MH</td>
                 `;
-                tbody.appendChild(tr);
-            }
-
-            document.getElementById('table-total-units').innerText = `${cumulatedReal.toFixed(1)} Mobil-Homes`;
-        }
-
-        // Génération de la chronologie exacte de sortie
-        function renderTimeline(m) {
-            const tbody = document.getElementById('timeline-tbody');
-            tbody.innerHTML = '';
-
-            // Construire les intervalles continus pour la semaine
-            const slots = [];
-            for (let dayIdx = 0; dayIdx < 6; dayIdx++) {
-                if (!state.activeDays[dayIdx]) continue;
-
-                const mStart = timeToSeconds(state.shifts.morningStart);
-                const mEnd = timeToSeconds(state.shifts.morningEnd);
-                const aStart = timeToSeconds(state.shifts.afternoonStart);
-                const aEnd = timeToSeconds(state.shifts.afternoonEnd);
-
-                slots.push({
-                    dayIdx,
-                    dayName: state.dayNames[dayIdx],
-                    shiftName: 'Matin',
-                    startSec: mStart,
-                    endSec: mEnd,
-                    duration: mEnd - mStart
-                });
-
-                slots.push({
-                    dayIdx,
-                    dayName: state.dayNames[dayIdx],
-                    shiftName: 'Après-Midi',
-                    startSec: aStart,
-                    endSec: aEnd,
-                    duration: aEnd - aStart
-                });
-            }
-
-            if (slots.length === 0) return;
-
-            const cycleSec = m.effectiveCycleSec;
-            let currentSlotIdx = 0;
-            let currentSecInSlot = slots[0].startSec;
-
-            const totalUnitsToSimulate = Math.min(100, Math.ceil(m.weeklyRealUnits * 1.2));
-
-            for (let unitNum = 1; unitNum <= totalUnitsToSimulate; unitNum++) {
-                let remainingCycleNeeded = cycleSec;
-
-                while (remainingCycleNeeded > 0 && currentSlotIdx < slots.length) {
-                    const slot = slots[currentSlotIdx];
-                    const availableInSlot = slot.endSec - currentSecInSlot;
-
-                    if (availableInSlot >= remainingCycleNeeded) {
-                        currentSecInSlot += remainingCycleNeeded;
-                        remainingCycleNeeded = 0;
-                    } else {
-                        remainingCycleNeeded -= availableInSlot;
-                        currentSlotIdx++;
-                        if (currentSlotIdx < slots.length) {
-                            currentSecInSlot = slots[currentSlotIdx].startSec;
-                        }
-                    }
-                }
-
-                if (currentSlotIdx >= slots.length && remainingCycleNeeded > 0) {
-                    // Fin de la semaine atteinte
-                    break;
-                }
-
-                const finalSlot = slots[currentSlotIdx];
-                const finishTimeStr = secondsToTimeStr(currentSecInSlot);
-
-                // Ajout ligne timeline
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-750 transition timeline-row";
-                tr.setAttribute('data-unit', `mobil-home #${unitNum}`);
-
-                const badgeShiftColor = finalSlot.shiftName === 'Matin' ? 'bg-amber-950 text-amber-300 border-amber-800' : 'bg-blue-950 text-blue-300 border-blue-800';
-
-                tr.innerHTML = `
-                    <td class="py-2.5 px-4 font-bold font-mono text-white flex items-center">
-                        <i class="fa-solid fa-caravan text-red-500 mr-2"></i>Mobil-Home #${unitNum}
-                    </td>
-                    <td class="py-2.5 px-4 font-semibold text-slate-200">${finalSlot.dayName}</td>
-                    <td class="py-2.5 px-4">
-                        <span class="px-2 py-0.5 text-[10px] font-bold rounded border ${badgeShiftColor}">
-                            ${finalSlot.shiftName}
-                        </span>
-                    </td>
-                    <td class="py-2.5 px-4 font-mono font-bold text-sm text-red-400">${finishTimeStr}</td>
-                    <td class="py-2.5 px-4 font-mono text-slate-400">${formatDurationSec(cycleSec)}</td>
-                    <td class="py-2.5 px-4">
-                        <span class="text-[11px] font-semibold text-emerald-400"><i class="fa-solid fa-circle-check mr-1"></i>Terminé sur ligne</span>
-                    </td>
-                `;
-
-                tbody.appendChild(tr);
-            }
-        }
-
-        function filterTimeline() {
-            const query = document.getElementById('timeline-search').value.toLowerCase();
-            const rows = document.querySelectorAll('.timeline-row');
-            rows.forEach(row => {
-                const text = row.getAttribute('data-unit') || '';
-                if (text.includes(query)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
+                tbody.appendChild(row);
             });
         }
 
-        // Configuration et mis à jour des graphiques Chart.js
-        function renderCharts(m) {
-            const labels = [];
-            const realData = [];
-            const theoData = [];
+        function renderTimeline(cycleSeconds) {
+            const tbody = document.getElementById('timeline-tbody');
+            tbody.innerHTML = '';
 
-            for (let i = 0; i < 6; i++) {
-                if (state.activeDays[i]) {
-                    labels.push(state.dayNames[i]);
-                    realData.push(m.dailyRealUnits.toFixed(2));
-                    theoData.push(m.dailyTheoUnits.toFixed(2));
+            const days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
+            let currentDayIdx = 0;
+            let currentSecondsInDay = 0; // Secondes écoulées depuis 07h30
+            const dayWorkSeconds = 8.5 * 3600; // 30600 secondes
+
+            let unitCount = 1;
+            const maxUnitsToShow = 40;
+
+            while (currentDayIdx < 5 && unitCount <= maxUnitsToShow) {
+                currentSecondsInDay += cycleSeconds;
+
+                if (currentSecondsInDay > dayWorkSeconds) {
+                    currentDayIdx++;
+                    currentSecondsInDay = currentSecondsInDay - dayWorkSeconds;
+                    if (currentDayIdx >= 5) break;
                 }
+
+                // Conversion en heure réelle d'usine
+                let realTimeStr = formatFactoryTime(currentSecondsInDay);
+
+                const row = document.createElement('tr');
+                row.className = "hover:bg-slate-800/50 transition border-b border-slate-800";
+                row.innerHTML = `
+                    <td class="py-2.5 px-4 font-bold text-red-400">Mobil-Home #${String(unitCount).padStart(2, '0')}</td>
+                    <td class="py-2.5 px-4 text-white">${days[currentDayIdx]}</td>
+                    <td class="py-2.5 px-4 text-amber-300 font-bold">${realTimeStr}</td>
+                    <td class="py-2.5 px-4 text-slate-400">${formatSecondsToHMS(cycleSeconds)}</td>
+                    <td class="py-2.5 px-4 text-right"><span class="bg-emerald-950 text-emerald-400 border border-emerald-800 text-[10px] px-2 py-0.5 rounded">Planifié</span></td>
+                `;
+                tbody.appendChild(row);
+                unitCount++;
+            }
+        }
+
+        // Convertit les secondes travaillées depuis 07h30 en heure horloge réelle usine (07h30-12h00 / 13h00-17h00)
+        function formatFactoryTime(workedSeconds) {
+            let startSec = 7.5 * 3600; // 07h30
+            let morningMaxSec = 4.5 * 3600; // 4.5h du matin (12h00)
+
+            let totalSec = startSec + workedSeconds;
+
+            if (workedSeconds > morningMaxSec) {
+                // Ajouter 1h de pause déjeuner (12h-13h)
+                totalSec += 3600;
             }
 
-            // 1. Graphique Barres
-            const ctxBar = document.getElementById('dailyChart').getContext('2d');
+            let h = Math.floor(totalSec / 3600);
+            let m = Math.floor((totalSec % 3600) / 60);
+
+            return `${String(h).padStart(2, '0')}h ${String(m).padStart(2, '0')}m`;
+        }
+
+        // --- GRAPHIQUES ---
+        function renderCharts(dailyUnits, usefulH, lostH) {
+            // Chart 1 : Production journalière
+            const ctx1 = document.getElementById('dailyChart').getContext('2d');
             if (dailyChartInstance) dailyChartInstance.destroy();
 
-            dailyChartInstance = new Chart(ctxBar, {
+            dailyChartInstance = new Chart(ctx1, {
                 type: 'bar',
                 data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Production Réelle (TRS Configuré)',
-                            data: realData,
-                            backgroundColor: '#E30613',
-                            borderRadius: 8,
-                        },
-                        {
-                            label: 'Capacité Théorique (100% TRS)',
-                            data: theoData,
-                            backgroundColor: '#334155',
-                            borderRadius: 8,
-                        }
-                    ]
+                    labels: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'],
+                    datasets: [{
+                        label: 'Unités Produites',
+                        data: [dailyUnits, dailyUnits, dailyUnits, dailyUnits, dailyUnits],
+                        backgroundColor: '#E30613',
+                        borderRadius: 8
+                    }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: { color: '#94A3B8', font: { family: 'Inter', size: 11 } }
-                        }
-                    },
+                    plugins: { legend: { display: false } },
                     scales: {
-                        x: { ticks: { color: '#94A3B8' }, grid: { color: '#1E293B' } },
-                        y: { ticks: { color: '#94A3B8' }, grid: { color: '#1E293B' } }
+                        y: { ticks: { color: '#94A3B8' }, grid: { color: '#334155' } },
+                        x: { ticks: { color: '#94A3B8' }, grid: { display: false } }
                     }
                 }
             });
 
-            // 2. Graphique Donut allocation temps
-            const ctxPie = document.getElementById('timeAllocationChart').getContext('2d');
+            // Chart 2 : Camembert Répartition Temps
+            const ctx2 = document.getElementById('timeAllocationChart').getContext('2d');
             if (timeChartInstance) timeChartInstance.destroy();
 
-            const usefulHours = (m.weeklyUsefulSec / 3600).toFixed(1);
-            const lostHours = ((m.weeklyGrossSec - m.weeklyUsefulSec) / 3600).toFixed(1);
-
-            timeChartInstance = new Chart(ctxPie, {
+            timeChartInstance = new Chart(ctx2, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Temps Utile Produit', 'Marge TRS / Pertes'],
+                    labels: ['Temps Utile', 'Pertes TRS'],
                     datasets: [{
-                        data: [usefulHours, lostHours],
+                        data: [usefulH.toFixed(1), lostH.toFixed(1)],
                         backgroundColor: ['#10B981', '#EF4444'],
                         borderWidth: 0
                     }]
@@ -1151,115 +766,113 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    cutout: '70%',
-                    plugins: {
-                        legend: { display: false }
-                    }
+                    plugins: { legend: { position: 'bottom', labels: { color: '#94A3B8', font: { size: 10 } } } }
                 }
             });
-
-            document.getElementById('chart-time-prod').innerText = `${usefulHours} h`;
-            document.getElementById('chart-time-loss').innerText = `${lostHours} h`;
         }
 
-        // Configuration Shift Settings
-        function updateShiftSettings() {
-            state.shifts.morningStart = document.getElementById('shift-morning-start').value;
-            state.shifts.morningEnd = document.getElementById('shift-morning-end').value;
-            state.shifts.afternoonStart = document.getElementById('shift-afternoon-start').value;
-            state.shifts.afternoonEnd = document.getElementById('shift-afternoon-end').value;
-
-            for (let i = 0; i < 6; i++) {
-                const chk = document.getElementById(`day-active-${i}`);
-                if (chk) state.activeDays[i] = chk.checked;
-            }
-
-            const mSec = timeToSeconds(state.shifts.morningEnd) - timeToSeconds(state.shifts.morningStart);
-            const aSec = timeToSeconds(state.shifts.afternoonEnd) - timeToSeconds(state.shifts.afternoonStart);
-
-            document.getElementById('settings-morning-duration').innerText = formatDurationSec(mSec);
-            document.getElementById('settings-afternoon-duration').innerText = formatDurationSec(aSec);
-            document.getElementById('settings-daily-total').innerText = formatDurationSec(mSec + aSec);
-
-            updateCalculations();
+        // --- FONCTIONS DE SAUVEGARDE (LOCALSTORAGE) ---
+        function saveToLocalStorage() {
+            localStorage.setItem('trigano_pdp_config', JSON.stringify(appState));
+            const badge = document.getElementById('save-status-badge');
+            badge.classList.remove('opacity-50');
+            setTimeout(() => badge.classList.add('opacity-50'), 1000);
         }
 
-        function resetDefaultHours() {
-            document.getElementById('shift-morning-start').value = "07:30";
-            document.getElementById('shift-morning-end').value = "12:00";
-            document.getElementById('shift-afternoon-start').value = "13:00";
-            document.getElementById('shift-afternoon-end').value = "17:00";
+        function loadFromLocalStorage() {
+            const saved = localStorage.getItem('trigano_pdp_config');
+            if (saved) {
+                try {
+                    appState = JSON.parse(saved);
+                    // Remplir les champs du formulaire
+                    document.getElementById('input-cycle-h').value = appState.cycleH ?? 1;
+                    document.getElementById('input-cycle-m').value = appState.cycleM ?? 15;
+                    document.getElementById('input-cycle-s').value = appState.cycleS ?? 0;
+                    document.getElementById('input-weekly-target-range').value = appState.targetUnits ?? 25;
+                    document.getElementById('input-weekly-target-number').value = appState.targetUnits ?? 25;
+                    document.getElementById('input-trs-range').value = appState.trs ?? 85;
 
-            for (let i = 0; i < 5; i++) {
-                document.getElementById(`day-active-${i}`).checked = true;
-            }
-            document.getElementById(`day-active-5`).checked = false;
-
-            updateShiftSettings();
-        }
-
-        // Rendu fiche d'impression
-        function renderPrintSheet(m) {
-            document.getElementById('print-date').innerText = new Date().toLocaleDateString('fr-FR');
-            document.getElementById('print-cycle-time').innerText = formatDurationSec(m.effectiveCycleSec);
-            document.getElementById('print-trs').innerText = `${state.trsPercent}%`;
-            document.getElementById('print-weekly-total').innerText = `${m.weeklyRealUnits.toFixed(1)} Mobil-Homes`;
-
-            const tbody = document.getElementById('print-tbody');
-            tbody.innerHTML = '';
-
-            for (let i = 0; i < 6; i++) {
-                if (!state.activeDays[i]) continue;
-
-                const tr = document.createElement('tr');
-                tr.className = "border-b border-slate-200";
-                tr.innerHTML = `
-                    <td class="p-2 border-r border-slate-200 font-bold">${state.dayNames[i]}</td>
-                    <td class="p-2 border-r border-slate-200 text-center font-mono">${state.shifts.morningStart}-${state.shifts.morningEnd} / ${state.shifts.afternoonStart}-${state.shifts.afternoonEnd}</td>
-                    <td class="p-2 border-r border-slate-200 text-center font-mono">${(m.dailyUsefulSec / 3600).toFixed(1)} h</td>
-                    <td class="p-2 border-r border-slate-200 text-center font-mono">${m.dailyTheoUnits.toFixed(2)}</td>
-                    <td class="p-2 text-center font-mono font-bold text-red-600">${m.dailyRealUnits.toFixed(2)}</td>
-                `;
-                tbody.appendChild(tr);
-            }
-        }
-
-        // Action Impression / PDF
-        function triggerPrint() {
-            window.print();
-        }
-
-        // Exportation CSV
-        function exportCSV() {
-            const m = calculateMetrics();
-            let csvContent = "data:text/csv;charset=utf-8,";
-            csvContent += "TRIGANO MDC - PLAN DIRECTEUR DE PRODUCTION\n";
-            csvContent += `Temps de Cycle (s);${m.effectiveCycleSec}\n`;
-            csvContent += `TRS (%);${state.trsPercent}\n`;
-            csvContent += `Production Hebdo Estimée;${m.weeklyRealUnits.toFixed(2)}\n\n`;
-
-            csvContent += "Jour;Heures Utiles;Capacite Theorique;Production Reelle PDP\n";
-
-            for (let i = 0; i < 6; i++) {
-                if (state.activeDays[i]) {
-                    csvContent += `${state.dayNames[i]};${(m.dailyUsefulSec/3600).toFixed(1)};${m.dailyTheoUnits.toFixed(2)};${m.dailyRealUnits.toFixed(2)}\n`;
+                    setMode(appState.mode || 'cycle');
+                } catch (e) {
+                    console.error("Erreur de chargement LocalStorage", e);
                 }
             }
+        }
+
+        function resetToDefaults() {
+            if (confirm("Voulez-vous réinitialiser tous les paramètres aux valeurs d'usine ?")) {
+                localStorage.removeItem('trigano_pdp_config');
+                appState = {
+                    mode: 'cycle',
+                    cycleH: 1, cycleM: 15, cycleS: 0,
+                    targetUnits: 25, trs: 85,
+                    hoursPerDay: 8.5, workDaysCount: 5
+                };
+                document.getElementById('input-cycle-h').value = 1;
+                document.getElementById('input-cycle-m').value = 15;
+                document.getElementById('input-cycle-s').value = 0;
+                document.getElementById('input-weekly-target-range').value = 25;
+                document.getElementById('input-weekly-target-number').value = 25;
+                document.getElementById('input-trs-range').value = 85;
+                setMode('cycle');
+            }
+        }
+
+        // --- EXPORTATION ET IMPORTATION EN FICHIER JSON ---
+        function exportConfigToFile() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `TRIGANO_PDP_CONFIG_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        function importConfigFromFile(event) {
+            const fileReader = new FileReader();
+            fileReader.onload = function(e) {
+                try {
+                    const importedState = JSON.parse(e.target.result);
+                    appState = { ...appState, ...importedState };
+                    localStorage.setItem('trigano_pdp_config', JSON.stringify(appState));
+                    loadFromLocalStorage();
+                    alert("Configuration importée avec succès !");
+                } catch (err) {
+                    alert("Fichier de configuration invalide.");
+                }
+            };
+            fileReader.readAsText(event.target.files[0]);
+        }
+
+        // --- EXPORT CSV ---
+        function exportCSV() {
+            let csvContent = "data:text/csv;charset=utf-8,Jour;Hours;Real_MH_Produced\n";
+            const days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'];
+            const dailyUnits = (appState.mode === 'cycle') 
+                ? (((appState.hoursPerDay * 5 * (appState.trs/100)) * 3600) / ((appState.cycleH*3600)+(appState.cycleM*60)+appState.cycleS)) / 5 
+                : appState.targetUnits / 5;
+
+            days.forEach(day => {
+                csvContent += `${day};8.5;${dailyUnits.toFixed(2)}\n`;
+            });
 
             const encodedUri = encodeURI(csvContent);
             const link = document.createElement("a");
             link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `PDP_Trigano_MDC_${new Date().toISOString().slice(0,10)}.csv`);
+            link.setAttribute("download", "TRIGANO_MDC_PDP_Export.csv");
             document.body.appendChild(link);
             link.click();
-            document.body.removeChild(link);
+            link.remove();
         }
 
-        // Initialisation lors du chargement de la page
-        window.onload = function() {
-            updateShiftSettings();
-            updateCalculations();
-        };
+        // Utility: Formatage Secondes -> HHh MMm SSs
+        function formatSecondsToHMS(totalSec) {
+            let h = Math.floor(totalSec / 3600);
+            let m = Math.floor((totalSec % 3600) / 60);
+            let s = Math.floor(totalSec % 60);
+            return `${String(h).padStart(2, '0')}h ${String(m).padStart(2, '0')}m ${String(s).padStart(2, '0')}s`;
+        }
     </script>
 </body>
 </html>
